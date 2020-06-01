@@ -2,7 +2,11 @@
 
 @section('content')
     @if (Auth::check())
-        {{ Auth::user()->name }}
+         <h1>選考中の会社一覧</h1>
+         @if(count($campanies) > 0)
+             @include('campanies.index', ['campanies' => $campanies])
+         @endif
+          {!! link_to_route('campanies.create', '企業追加', null, ['class' => 'btn btn-primary']) !!}
     @else
         <div class="center jumbotron">
             <div class="text-center">
