@@ -25,4 +25,11 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 // ユーザ機能
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('campanies', 'CampaniesController');
+    Route::get('/campanies/{id}/items', 'ItemsController@index')->name('items.index');
+    //アイテムの新規登録関連
+    Route::get('/campanies/{id}/items/create', 'ItemsController@showCreateForm')->name('items.create');
+    Route::post('/campanies/{id}/items/create', 'ItemsController@create');
+    //編集画面機能の一覧
+    Route::get('/campanies/{id}/items/{item_id}/edit', 'ItemsController@showEditForm')->name('items.edit');
+    Route::post('/campanies/{id}/items/{item_id}/edit', 'ItemsController@edit');
 });
